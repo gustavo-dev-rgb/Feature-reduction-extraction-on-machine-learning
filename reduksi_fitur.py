@@ -19,4 +19,15 @@ print("Ukuran dataset:", df.shape)
 print("\nMissing value per kolom:")
 print(df.isnull().sum())
 
+#2. Data Cleaning(missing values, duplikasi, dll)
+print(df.isnull().sum())
+print("Duplikat:", df.duplicated().sum())
+df = df.drop_duplicates()
+
+fitur = [
+    'PM2.5', 'PM10', 'SO2', 'NO2', 'CO', 'O3',
+    'TEMP', 'PRES', 'DEWP', 'RAIN', 'WSPM'
+]
+
+
 
