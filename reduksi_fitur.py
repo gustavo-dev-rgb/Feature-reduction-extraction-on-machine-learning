@@ -29,5 +29,18 @@ fitur = [
     'TEMP', 'PRES', 'DEWP', 'RAIN', 'WSPM'
 ]
 
+data = df[fitur].copy()
+data = data.apply(pd.to_numeric, errors='coerce')
+data = data.fillna(data.median())
+print("Sisa missing value:", data.isnull().sum().sum())
+
+# 3. Normalisasi menggunakan minmax
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+data_scaled = scaler.fit_transform(data)
+print(data_scaled[:5])
+
+
 
 
