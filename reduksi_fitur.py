@@ -41,6 +41,17 @@ scaler = MinMaxScaler()
 data_scaled = scaler.fit_transform(data)
 print(data_scaled[:5])
 
+# 4. Lakukan PCA
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+data_pca = pca.fit_transform(data_scaled)
+print("Variansi yang dijelaskan:")
+print(pca.explained_variance_ratio_)
+print(
+    "Total variansi:",
+    pca.explained_variance_ratio_.sum()
+)
 
 
 
