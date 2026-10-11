@@ -53,5 +53,34 @@ print(
     pca.explained_variance_ratio_.sum()
 )
 
+# 5. Clustering (kmeans, agglo, dbscan) pilih salah satu
+from sklearn.cluster import KMeans
+
+kmeans = KMeans(
+    n_clusters=3,
+    random_state=42,
+    n_init=10
+)
+
+cluster = kmeans.fit_predict(data_pca)
+hasil = pd.DataFrame(data_pca, columns=['PC1', 'PC2'])
+hasil['Cluster'] = cluster
+
+print(hasil.head())
+print(hasil['Cluster'].value_counts())
+plt.figure(figsize=(10, 6))
+
+plt.scatter(
+    hasil['PC1'],
+    hasil['PC2'],
+    c=hasil['Cluster'],
+    cmap='viridis',
+    s=10
+)
+
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title('K-Means Clustering - Beijing Air Quality')
+plt.show()
 
 
