@@ -6,7 +6,7 @@ import os
 import glob
 
 # 1. Baca data
-df = 'PRSA_Data_20130301-20170228'
+df = r"D:\Machine Learning\feature reduction & extraction\Feature reduction & extraction on machine learning\PRSA_Data_20130301-20170228"
 files = glob.glob(os.path.join(df, '*.csv'))
 
 df = pd.concat(
@@ -18,6 +18,7 @@ print("Jumlah file:", len(files))
 print("Ukuran dataset:", df.shape)
 print("\nMissing value per kolom:")
 print(df.isnull().sum())
+
 
 #2. Data Cleaning(missing values, duplikasi, dll)
 print(df.isnull().sum())
@@ -53,34 +54,34 @@ print(
     pca.explained_variance_ratio_.sum()
 )
 
-# 5. Clustering (kmeans, agglo, dbscan) pilih salah satu
-from sklearn.cluster import KMeans
+# # 5. Clustering (kmeans, agglo, dbscan) pilih salah satu
+# from sklearn.cluster import KMeans
 
-kmeans = KMeans(
-    n_clusters=3,
-    random_state=42,
-    n_init=10
-)
+# kmeans = KMeans(
+#     n_clusters=3,
+#     random_state=42,
+#     n_init=10
+# )
 
-cluster = kmeans.fit_predict(data_pca)
-hasil = pd.DataFrame(data_pca, columns=['PC1', 'PC2'])
-hasil['Cluster'] = cluster
+# cluster = kmeans.fit_predict(data_pca)
+# hasil = pd.DataFrame(data_pca, columns=['PC1', 'PC2'])
+# hasil['Cluster'] = cluster
 
-print(hasil.head())
-print(hasil['Cluster'].value_counts())
-plt.figure(figsize=(10, 6))
+# print(hasil.head())
+# print(hasil['Cluster'].value_counts())
+# plt.figure(figsize=(10, 6))
 
-plt.scatter(
-    hasil['PC1'],
-    hasil['PC2'],
-    c=hasil['Cluster'],
-    cmap='viridis',
-    s=10
-)
+# plt.scatter(
+#     hasil['PC1'],
+#     hasil['PC2'],
+#     c=hasil['Cluster'],
+#     cmap='viridis',
+#     s=10
+# )
 
-plt.xlabel('Principal Component 1')
-plt.ylabel('Principal Component 2')
-plt.title('K-Means Clustering - Beijing Air Quality')
-plt.show()
+# plt.xlabel('Principal Component 1')
+# plt.ylabel('Principal Component 2')
+# plt.title('K-Means Clustering - Beijing Air Quality')
+# plt.show()
 
 
